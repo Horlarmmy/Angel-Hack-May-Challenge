@@ -37,6 +37,18 @@ def print_grid(grid):
         print(''.join(row))
     print()
 
+def calculate_lifeform_score(layout):
+    tile_values = [2**i for i in range(25)]
+    score = 0
+    
+    for i in range(5):
+        for j in range(5):
+            if layout[i][j] == 'X':
+                tile_number = i * 5 + j
+                score += tile_values[tile_number]
+    
+    return score
+
 
 # Example start state
 start_state = [
@@ -65,3 +77,6 @@ while True:
         grids.append(next_grid)
         minute += 1
 
+lifeform_score = calculate_lifeform_score(next_grid)
+
+print("Lifeform score:", lifeform_score)
